@@ -26,5 +26,5 @@ setup() {
 @test "Analisis DNS completo funciona" {
     run analizar_dns "localhost"
     [ "$status" -eq 0 ]
-    [[ "$output" == *"Análisis DNS"* ]]
+    [[ "$output" == *"Analisis DNS"* ]]
 }
