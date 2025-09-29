@@ -36,7 +36,7 @@ while true; do
 
     method="$(echo "$request_line" | awk '{print $1}')"
     path="$(echo "$request_line" | awk '{print $2}')"
-    version="$(echo "$request_line" | awk '{print $3}')"
+    version="$(echo "$request_line" | awk '{print $3}' | tr -d '\r')"
 
     timestamp=$(date '+%Y-%m-%d %H:%M:%S')
     
@@ -68,7 +68,7 @@ while true; do
 
     # Cabeceras HTTP
     response_headers=""
-    response_headers+="HTTP/1.1 $status"$'\r\n'
+    response_headers+="$version $status"$'\r\n'
     response_headers+="Content-Type: text/plain"$'\r\n'
     response_headers+="Server: BashHTTP/1.0"$'\r\n'
     response_headers+="Date: $(date -u '+%a, %d %b %Y %H:%M:%S GMT')"$'\r\n'
