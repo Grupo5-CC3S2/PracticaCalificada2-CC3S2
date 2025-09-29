@@ -31,9 +31,14 @@ while true; do
     nc -l -p "$PORT" <"$pipe" | (
         read -r request_line || exit 1
 
-        # Ignora los headers hasta la línea en blanco
+        content_length=""
+        # Lee los headers hasta la línea en blanco
         while read -r line; do
             line="${line%%$'\r'}"
+            # Para buscar el tamaño del contenido
+            if [[ "$line" =~ ^[Cc]ontent-[Ll]ength:\ (.*) ]]; then
+                content_length="${BASH_REMATCH[1]}"
+            fi
             [ -z "$line" ] && break
         done
 
@@ -55,7 +60,25 @@ while true; do
                 ;;
             *)
                 status="404 Not Found"
-                body="Error 404: Resource not found"
+                body="Error 404: Resource not found. The requested resource $path is not available for $method"
+                ;;
+            esac
+            ;;
+        "POST")
+            case "$path" in
+            "/eco")
+                if [ -n "$content_length" ] && [ "$content_length" -gt 0 ]; then
+                    status="200 OK" 
+                    # Leer el body del request hasta cierto numero de bytes
+                    body="$(head -c "$content_length")"
+                else 
+                    status="400 Bad Request"
+                    body="Error 400: POST /eco requires a request body"
+                fi
+                ;;
+            *)
+                status="404 Not Found"
+                body="Error 404: Resource not found. The requested resource $path is not available for $method"
                 ;;
             esac
             ;;
