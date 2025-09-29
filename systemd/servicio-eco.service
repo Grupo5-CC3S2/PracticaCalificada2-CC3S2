@@ -1,0 +1,15 @@
+[Unit]
+Description=Servicio Eco DNS Analysis
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/tmp
+Environment="DNS_SERVER=8.8.8.8" "DOMINIO=localhost"
+ExecStart=/bin/bash /path/to/src/dns-utils.sh
+Restart=no
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -2,6 +2,7 @@
 PORT ?= 8080
 HOST ?= localhost
 RELEASE ?= v0.1.0
+DNS_SERVER ?= 
 
 # Directorios
 SRC_DIR := src
@@ -56,3 +57,49 @@ pack: $(DIST_FILE)
 clean:
 	@echo "Limpiando $(OUT_DIR)/ y $(DIST_DIR)/..."
 	@rm -rf $(OUT_DIR) $(DIST_DIR)
+
+
+
+.PHONY: tools-dns test-dns run-dns systemd-setup systemd-test
+
+# Variables DNS
+DNS_SERVER ?= 
+DOMINIO ?= localhost
+
+# Verificar herramientas DNS
+tools-dns:
+	@echo "Verificando herramientas DNS..."
+	@for tool in dig; do \
+		command -v $$tool >/dev/null 2>&1 || { echo "Falta $$tool"; exit 1; } \
+	done
+	@echo "Todas las herramientas DNS disponibles"
+
+# Ejecutar análisis DNS
+run-dns:
+	@echo "Ejecutando análisis DNS..."
+	@DNS_SERVER=$(DNS_SERVER) DOMINIO=$(DOMINIO) bash src/dns-utils.sh
+
+# Ejecutar pruebas DNS
+test-dns:
+	@echo "Ejecutando pruebas DNS..."
+	@DNS_SERVER=$(DNS_SERVER) DOMINIO=$(DOMINIO) bats tests/dns-resolucion.bats
+
+# Configurar unidad systemd
+systemd-setup:
+	@echo "Configurando unidad systemd..."
+	@mkdir -p ~/.config/systemd/user/
+	@sed -e 's|/path/to/src/dns-utils.sh|$(shell pwd)/src/dns-utils.sh|' \
+	     -e 's|%E{DNS_SERVER}|8.8.8.8|g' \
+	     -e 's|%E{DOMINIO:-localhost}|localhost|g' \
+	     systemd/servicio-eco.service > ~/.config/systemd/user/servicio-eco.service
+	@systemctl --user daemon-reload
+	@echo "Unidad systemd configurada"
+
+# Probar unidad systemd
+systemd-test:
+	@echo "Probando unidad systemd..."
+	@systemctl --user start servicio-eco
+	@sleep 2
+	@systemctl --user status servicio-eco || true
+	@systemctl --user stop servicio-eco
+	@echo "Prueba de unidad systemd completada"
