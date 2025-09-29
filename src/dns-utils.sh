@@ -10,7 +10,7 @@ resolver_a() {
     local dominio="$1"
     echo "Resolviendo A para: $dominio" >&2
     local result
-    if [[ -z "$DNS_SERVER" ]]; then # su DNS_SERVER esta vacio usa resolucion por defecto
+    if [[ -z "$DNS_SERVER" ]]; then                                               # su DNS_SERVER esta vacio usa resolucion por defecto
         result=$(dig +short +nocmd -t A "$dominio" 2>/dev/null | head -1 || true) # toma solo la ip
     else
         result=$(dig +short +nocmd -t A "$dominio" @"$DNS_SERVER" 2>/dev/null | head -1 || true)
@@ -37,7 +37,7 @@ obtener_ttl() {
     local tipo_registro="${2:-A}"
     local ttl_line ttl # ttl guarda respuesta completa dig, ttl solo el segndo argumento
 
-    if [[ -z "$DNS_SERVER" ]]; then # -z -> string long 0 (es decir vacio)
+    if [[ -z "$DNS_SERVER" ]]; then                                                       # -z -> string long 0 (es decir vacio)
         ttl_line=$(dig +noall +answer -t "$tipo_registro" "$dominio" 2>/dev/null || true) # noall muestra la respuesta ttl
     else
         ttl_line=$(dig +noall +answer -t "$tipo_registro" "$dominio" @"$DNS_SERVER" 2>/dev/null || true)
@@ -64,7 +64,7 @@ obtener_ttl() {
 # Función principal - Solo análisis DNS
 analizar_dns() {
     local dominio="$1"
-    
+
     echo "=== Analisis DNS para: $dominio ==="
     echo "Registro A: $(resolver_a "$dominio")"
     echo "Registro CNAME: $(resolver_cname "$dominio")"
