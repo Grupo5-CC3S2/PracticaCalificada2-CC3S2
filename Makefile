@@ -22,7 +22,7 @@ DIST_FILE := $(DIST_DIR)/proyecto-$(RELEASE).tar.gz
 # Lista de herramientas
 TOOLS = nc curl dig openssl bats
 
-.PHONY: tools build run test pack clean help tools-dns test-dns run-dns systemd-setup systemd-test test-http monitor-red test-negativos test-systemd systemd-install
+.PHONY: tools build run test pack clean help tools-dns test-dns run-dns systemd-setup systemd-test test-http monitor-red test-negativos test-systemd systemd-install systemd-logs
 
 help:
 	@echo "Uso: make <target>"
@@ -105,8 +105,11 @@ systemd-setup:
 systemd-test:
 	@echo "Probando unidad systemd..."
 	@systemctl --user start servicio-eco
-	@sleep 2
-	@systemctl --user status servicio-eco || true
+	@sleep 3
+	@echo "--- Logs del servicio (últimas 20 líneas) ---"
+	@journalctl --user -u servicio-eco -n 20 --no-pager || echo "No se pudieron obtener logs"
+	@echo "--- Estado del servicio ---"
+	@systemctl --user status servicio-eco --no-pager || true
 	@systemctl --user stop servicio-eco
 	@echo "Prueba de unidad systemd completada"
 
@@ -136,3 +139,8 @@ test-extendido: test-dns test-systemd
 test-http:
 	@echo "Probando servicio eco HTTP..."
 	@PORT=$(PORT) HOST=$(HOST) bats $(TEST_DIR)/test-http-service.bats
+
+# mostrar los logs generados por journalctl
+systemd-logs:
+	@echo "Mostrando logs del servicio eco"
+	@journalctl --user -u servicio-eco -f
