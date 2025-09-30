@@ -142,19 +142,3 @@ ejecutar_como_servicio() {
         sleep 60  # Ejecutar cada minuto
     done
 }
-
-# Modificar el if final para soportar --service
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-    case "${1:-}" in
-        "--service")
-            ejecutar_como_servicio
-            ;;
-        "--avanzado")
-            shift
-            analizar_dns_avanzado "${DOMINIO}" "$@"
-            ;;
-        *)
-            analizar_dns "${DOMINIO}"
-            ;;
-    esac
-fi

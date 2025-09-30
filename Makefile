@@ -127,8 +127,3 @@ systemd-install:
 # Target completo para todas las pruebas extendidas
 test-extendido: test-dns test-systemd
 	@echo "Todas las pruebas extendidas completadas"
-
-# Target para analisis avanzado
-run-dns-avanzado:
-	@mkdir -p $(OUT_DIR)
-	@DNS_SERVER=$(DNS_SERVER) DOMINIO=$(DOMINIO) bash src/dns-utils.sh --avanzado
