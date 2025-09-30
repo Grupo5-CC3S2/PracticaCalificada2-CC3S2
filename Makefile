@@ -2,6 +2,8 @@
 PORT ?= 8080
 HOST ?= localhost
 RELEASE ?= v0.1.0
+MONITOR_HOSTS ?= localhost google.com
+MONITOR_PORTS ?= 80 443 8080 53
 DNS_SERVER ?= 
 DOMINIO ?= localhost
 TARGET_HOST ?= example.org
@@ -20,7 +22,7 @@ DIST_FILE := $(DIST_DIR)/proyecto-$(RELEASE).tar.gz
 # Lista de herramientas
 TOOLS = nc curl dig openssl bats
 
-.PHONY: tools build run test pack clean help tools-dns test-dns run-dns systemd-setup systemd-test test-http
+.PHONY: tools build run test pack clean help tools-dns test-dns run-dns systemd-setup systemd-test test-http monitor-red test-negativos test-systemd systemd-install
 
 help:
 	@echo "Uso: make <target>"
@@ -79,8 +81,9 @@ clean:
 
 # Ejecutar análisis DNS
 run-dns:
-	@echo "Ejecutando análisis DNS..."
-	@DNS_SERVER=$(DNS_SERVER) DOMINIO=$(DOMINIO) bash src/dns-utils.sh
+	@mkdir -p $(OUT_DIR)
+	@echo "Ejecutando análisis DNS y guardando en $(OUT_DIR)..."
+	@DNS_SERVER=$(DNS_SERVER) DOMINIO=$(DOMINIO) bash src/dns-utils.sh | tee $(OUT_DIR)/dns-analysis-$$(date +%Y%m%d-%H%M%S).txt
 
 # Ejecutar pruebas DNS
 test-dns:
@@ -106,6 +109,28 @@ systemd-test:
 	@systemctl --user status servicio-eco || true
 	@systemctl --user stop servicio-eco
 	@echo "Prueba de unidad systemd completada"
+
+# Monitoreo de red
+monitor-red:
+	@echo "Ejecutando monitoreo de red..."
+	@HOSTS="$(MONITOR_HOSTS)" PORTS="$(MONITOR_PORTS)" bash src/monitor-red.sh
+
+test-systemd:
+	@echo "Validando configuracion systemd..."
+	@bats tests/systemd-validation.bats
+
+# Instalacion systemd avanzada
+systemd-install:
+	@echo "Instalando servicio systemd avanzado..."
+	@mkdir -p ~/.config/systemd/user/
+	@cp systemd/servicio-eco.service ~/.config/systemd/user/
+	@cp systemd/servicio-eco.env.template ~/.config/systemd/user/servicio-eco.env
+	@systemctl --user daemon-reload
+	@echo "Servicio instalado. Edita ~/.config/systemd/user/servicio-eco.env para configurar"
+
+# Target completo para todas las pruebas extendidas
+test-extendido: test-dns test-systemd
+	@echo "Todas las pruebas extendidas completadas"
 
 # Probar servicio eco HTTP
 test-http:

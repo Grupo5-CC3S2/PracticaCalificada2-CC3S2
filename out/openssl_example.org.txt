@@ -1,0 +1,327 @@
+CONNECTED(00000003)
+>>> TLS 1.0, RecordHeader [length 0005]
+    16 03 01 01 34
+>>> TLS 1.3, Handshake [length 0134], ClientHello
+    01 00 01 30 03 03 63 3e 9d 89 50 78 c5 73 12 4d
+    10 53 e1 69 92 f0 18 25 b8 4a f5 f9 a8 82 1e 8d
+    4d 32 67 b2 1d 1a 20 0f ee c0 69 83 78 25 d6 42
+    94 84 fb de 49 17 b8 52 6a fb 0e 04 44 89 82 34
+    f0 65 19 3d e5 88 78 00 3e 13 02 13 03 13 01 c0
+    2c c0 30 00 9f cc a9 cc a8 cc aa c0 2b c0 2f 00
+    9e c0 24 c0 28 00 6b c0 23 c0 27 00 67 c0 0a c0
+    14 00 39 c0 09 c0 13 00 33 00 9d 00 9c 00 3d 00
+    3c 00 35 00 2f 00 ff 01 00 00 a9 00 00 00 10 00
+    0e 00 00 0b 65 78 61 6d 70 6c 65 2e 6f 72 67 00
+    0b 00 04 03 00 01 02 00 0a 00 16 00 14 00 1d 00
+    17 00 1e 00 19 00 18 01 00 01 01 01 02 01 03 01
+    04 00 23 00 00 00 16 00 00 00 17 00 00 00 0d 00
+    2a 00 28 04 03 05 03 06 03 08 07 08 08 08 09 08
+    0a 08 0b 08 04 08 05 08 06 04 01 05 01 06 01 03
+    03 03 01 03 02 04 02 05 02 06 02 00 2b 00 05 04
+    03 04 03 03 00 2d 00 02 01 01 00 33 00 26 00 24
+    00 1d 00 20 e2 6d f0 af 9d 4c a5 01 12 9e da ec
+    e1 aa c2 64 11 07 5d 8c 14 a4 b8 d9 ce 13 2f 21
+    10 bf 59 67
+<<< TLS 1.2, RecordHeader [length 0005]
+    16 03 03 00 7a
+<<< TLS 1.3, Handshake [length 007a], ServerHello
+    02 00 00 76 03 03 5d e7 fc 12 ee 84 b0 b4 b1 17
+    eb d5 83 d0 3e 10 6e 08 95 bc 41 26 84 6e a1 d3
+    49 63 51 b3 d9 81 20 0f ee c0 69 83 78 25 d6 42
+    94 84 fb de 49 17 b8 52 6a fb 0e 04 44 89 82 34
+    f0 65 19 3d e5 88 78 13 02 00 00 2e 00 2b 00 02
+    03 04 00 33 00 24 00 1d 00 20 fd 2f ad 00 3d 29
+    b5 72 3b 6d 4d 1f 1d 0a 08 d1 1d f6 c7 09 f3 8a
+    19 6c 5e 39 bd dc 80 58 27 3d
+<<< TLS 1.2, RecordHeader [length 0005]
+    14 03 03 00 01
+<<< TLS 1.2, RecordHeader [length 0005]
+    17 03 03 00 25
+<<< TLS 1.3, InnerContent [length 0001]
+    16
+<<< TLS 1.3, Handshake [length 0014], EncryptedExtensions
+    08 00 00 10 00 0e 00 00 00 00 00 0a 00 06 00 04
+    00 17 00 1d
+<<< TLS 1.2, RecordHeader [length 0005]
+    17 03 03 09 41
+<<< TLS 1.3, InnerContent [length 0001]
+    16
+<<< TLS 1.3, Handshake [length 0930], Certificate
+    0b 00 09 2c 00 00 09 28 00 05 a1 30 82 05 9d 30
+    82 05 24 a0 03 02 01 02 02 10 07 22 a7 49 b5 58
+    47 61 96 d5 54 44 5e db d2 54 30 0a 06 08 2a 86
+    48 ce 3d 04 03 03 30 59 31 0b 30 09 06 03 55 04
+    06 13 02 55 53 31 15 30 13 06 03 55 04 0a 13 0c
+    44 69 67 69 43 65 72 74 20 49 6e 63 31 33 30 31
+    06 03 55 04 03 13 2a 44 69 67 69 43 65 72 74 20
+    47 6c 6f 62 61 6c 20 47 33 20 54 4c 53 20 45 43
+    43 20 53 48 41 33 38 34 20 32 30 32 30 20 43 41
+    31 30 1e 17 0d 32 35 30 31 31 35 30 30 30 30 30
+    30 5a 17 0d 32 36 30 31 31 35 32 33 35 39 35 39
+    5a 30 81 8e 31 0b 30 09 06 03 55 04 06 13 02 55
+    53 31 13 30 11 06 03 55 04 08 13 0a 43 61 6c 69
+    66 6f 72 6e 69 61 31 14 30 12 06 03 55 04 07 13
+    0b 4c 6f 73 20 41 6e 67 65 6c 65 73 31 3c 30 3a
+    06 03 55 04 0a 13 33 49 6e 74 65 72 6e 65 74 20
+    43 6f 72 70 6f 72 61 74 69 6f 6e 20 66 6f 72 20
+    41 73 73 69 67 6e 65 64 20 4e 61 6d 65 73 20 61
+    6e 64 20 4e 75 6d 62 65 72 73 31 16 30 14 06 03
+    55 04 03 0c 0d 2a 2e 65 78 61 6d 70 6c 65 2e 6f
+    72 67 30 59 30 13 06 07 2a 86 48 ce 3d 02 01 06
+    08 2a 86 48 ce 3d 03 01 07 03 42 00 04 6f 70 b8
+    6a de e1 4c bb 39 2a a5 35 c6 e1 7f 16 73 0e 35
+    de 8c 1f 04 93 33 e0 97 2a 9c d9 e5 80 d6 f6 fb
+    61 74 4d a1 78 7d 5a 03 a5 ff 3e 6a b9 72 a8 c6
+    2c c5 2c 69 50 7f cd 6d 3b 9d 85 6f cc a3 82 03
+    96 30 82 03 92 30 1f 06 03 55 1d 23 04 18 30 16
+    80 14 8a 23 eb 9e 6b d7 f9 37 5d f9 6d 21 39 76
+    9a a1 67 de 10 a8 30 1d 06 03 55 1d 0e 04 16 04
+    14 12 45 a2 65 89 96 55 f2 0a 9e c1 df 05 9f dd
+    59 ee 65 ba 51 30 25 06 03 55 1d 11 04 1e 30 1c
+    82 0d 2a 2e 65 78 61 6d 70 6c 65 2e 6f 72 67 82
+    0b 65 78 61 6d 70 6c 65 2e 6f 72 67 30 3e 06 03
+    55 1d 20 04 37 30 35 30 33 06 06 67 81 0c 01 02
+    02 30 29 30 27 06 08 2b 06 01 05 05 07 02 01 16
+    1b 68 74 74 70 3a 2f 2f 77 77 77 2e 64 69 67 69
+    63 65 72 74 2e 63 6f 6d 2f 43 50 53 30 0e 06 03
+    55 1d 0f 01 01 ff 04 04 03 02 03 88 30 1d 06 03
+    55 1d 25 04 16 30 14 06 08 2b 06 01 05 05 07 03
+    01 06 08 2b 06 01 05 05 07 03 02 30 81 9f 06 03
+    55 1d 1f 04 81 97 30 81 94 30 48 a0 46 a0 44 86
+    42 68 74 74 70 3a 2f 2f 63 72 6c 33 2e 64 69 67
+    69 63 65 72 74 2e 63 6f 6d 2f 44 69 67 69 43 65
+    72 74 47 6c 6f 62 61 6c 47 33 54 4c 53 45 43 43
+    53 48 41 33 38 34 32 30 32 30 43 41 31 2d 32 2e
+    63 72 6c 30 48 a0 46 a0 44 86 42 68 74 74 70 3a
+    2f 2f 63 72 6c 34 2e 64 69 67 69 63 65 72 74 2e
+    63 6f 6d 2f 44 69 67 69 43 65 72 74 47 6c 6f 62
+    61 6c 47 33 54 4c 53 45 43 43 53 48 41 33 38 34
+    32 30 32 30 43 41 31 2d 32 2e 63 72 6c 30 81 87
+    06 08 2b 06 01 05 05 07 01 01 04 7b 30 79 30 24
+    06 08 2b 06 01 05 05 07 30 01 86 18 68 74 74 70
+    3a 2f 2f 6f 63 73 70 2e 64 69 67 69 63 65 72 74
+    2e 63 6f 6d 30 51 06 08 2b 06 01 05 05 07 30 02
+    86 45 68 74 74 70 3a 2f 2f 63 61 63 65 72 74 73
+    2e 64 69 67 69 63 65 72 74 2e 63 6f 6d 2f 44 69
+    67 69 43 65 72 74 47 6c 6f 62 61 6c 47 33 54 4c
+    53 45 43 43 53 48 41 33 38 34 32 30 32 30 43 41
+    31 2d 32 2e 63 72 74 30 0c 06 03 55 1d 13 01 01
+    ff 04 02 30 00 30 82 01 7e 06 0a 2b 06 01 04 01
+    d6 79 02 04 02 04 82 01 6e 04 82 01 6a 01 68 00
+    77 00 96 97 64 bf 55 58 97 ad f7 43 87 68 37 08
+    42 77 e9 f0 3a d5 f6 a4 f3 36 6e 46 a4 3f 0f ca
+    a9 c6 00 00 01 94 67 7a c5 5e 00 00 04 03 00 48
+    30 46 02 21 00 ed bc a7 9a 17 de 0c 40 d1 12 49
+    ff 63 1a 67 7c f3 31 cc 99 82 0c b6 97 05 50 9e
+    a4 a9 5f 94 77 02 21 00 a9 45 b1 fb 69 75 c5 ea
+    23 4a 15 74 69 bf 8c 6d c3 cd 83 c6 d8 bf 0d 71
+    6f 7d ac 24 e6 2e c4 a9 00 75 00 64 11 c4 6c a4
+    12 ec a7 89 1c a2 02 2e 00 bc ab 4f 28 07 d4 1e
+    35 27 ab ea fe d5 03 c9 7d cd f0 00 00 01 94 67
+    7a c5 63 00 00 04 03 00 46 30 44 02 20 0c c7 52
+    0b 88 1b c1 fe d0 91 7b da e4 cb 1d ab 65 a2 b8
+    a4 3d 1f c3 dc ff c7 46 cc ab 17 ee 38 02 20 46
+    1f 42 9c 2c da 9c 8f 66 46 12 30 a1 8a 24 5f 3a
+    32 dd 52 b1 4a 83 a8 e7 30 8a 15 14 c9 58 17 00
+    76 00 49 9c 9b 69 de 1d 7c ec fc 36 de cd 87 64
+    a6 b8 5b af 0a 87 80 19 d1 55 52 fb e9 eb 29 dd
+    f8 c3 00 00 01 94 67 7a c5 78 00 00 04 03 00 47
+    30 45 02 20 44 44 8c ef 7a 72 9d 0d 78 d1 04 a8
+    c0 3a c2 e3 da 10 5d 9b ad da 76 10 73 60 d8 ad
+    7d ba 55 78 02 21 00 d1 05 88 62 e5 4d db 0b 5f
+    46 4f 61 33 7c 32 eb df cb e4 33 9c 8d 35 89 d8
+    95 8d 44 9f bf 93 73 30 0a 06 08 2a 86 48 ce 3d
+    04 03 03 03 67 00 30 64 02 30 47 7d 84 6c 5c 13
+    47 31 fb 3a 32 5c ed b9 94 6b 09 1c 34 11 13 21
+    31 21 de ec 09 79 9d 20 f3 f9 c3 f7 28 77 1d c6
+    44 56 b5 fd 71 16 4b 12 96 35 02 30 4d 69 5d 5e
+    c6 0b 75 6a d8 f9 9d d3 03 e4 45 29 e0 05 1f 47
+    9b 65 fc b2 bc 08 36 8f d0 bd 9f 75 a1 2e dd 50
+    3b 1e 68 12 79 c0 e6 f9 a0 79 80 8f 00 00 00 03
+    7d 30 82 03 79 30 82 02 ff a0 03 02 01 02 02 10
+    0b 00 e9 2d 4d 6d 73 1f ca 30 59 c7 cb 1e 18 86
+    30 0a 06 08 2a 86 48 ce 3d 04 03 03 30 61 31 0b
+    30 09 06 03 55 04 06 13 02 55 53 31 15 30 13 06
+    03 55 04 0a 13 0c 44 69 67 69 43 65 72 74 20 49
+    6e 63 31 19 30 17 06 03 55 04 0b 13 10 77 77 77
+    2e 64 69 67 69 63 65 72 74 2e 63 6f 6d 31 20 30
+    1e 06 03 55 04 03 13 17 44 69 67 69 43 65 72 74
+    20 47 6c 6f 62 61 6c 20 52 6f 6f 74 20 47 33 30
+    1e 17 0d 32 31 30 34 31 34 30 30 30 30 30 30 5a
+    17 0d 33 31 30 34 31 33 32 33 35 39 35 39 5a 30
+    59 31 0b 30 09 06 03 55 04 06 13 02 55 53 31 15
+    30 13 06 03 55 04 0a 13 0c 44 69 67 69 43 65 72
+    74 20 49 6e 63 31 33 30 31 06 03 55 04 03 13 2a
+    44 69 67 69 43 65 72 74 20 47 6c 6f 62 61 6c 20
+    47 33 20 54 4c 53 20 45 43 43 20 53 48 41 33 38
+    34 20 32 30 32 30 20 43 41 31 30 76 30 10 06 07
+    2a 86 48 ce 3d 02 01 06 05 2b 81 04 00 22 03 62
+    00 04 78 a9 9c 75 ae 88 5d 63 a4 ad 5d 86 d8 10
+    49 d6 af 92 59 63 43 23 85 f4 48 65 30 cd 4a 34
+    95 a6 0e 3e d9 7c 08 d7 57 05 28 48 9e 0b ab eb
+    c2 d3 96 9e ed 45 d2 8b 8a ce 01 4b 17 43 e1 73
+    cf 6d 73 48 34 dc 00 46 09 b5 56 54 c9 5f 7a c7
+    13 07 d0 6c 18 17 6c ca db c7 0b 26 56 2e 8d 07
+    f5 67 a3 82 01 82 30 82 01 7e 30 12 06 03 55 1d
+    13 01 01 ff 04 08 30 06 01 01 ff 02 01 00 30 1d
+    06 03 55 1d 0e 04 16 04 14 8a 23 eb 9e 6b d7 f9
+    37 5d f9 6d 21 39 76 9a a1 67 de 10 a8 30 1f 06
+    03 55 1d 23 04 18 30 16 80 14 b3 db 48 a4 f9 a1
+    c5 d8 ae 36 41 cc 11 63 69 62 29 bc 4b c6 30 0e
+    06 03 55 1d 0f 01 01 ff 04 04 03 02 01 86 30 1d
+    06 03 55 1d 25 04 16 30 14 06 08 2b 06 01 05 05
+    07 03 01 06 08 2b 06 01 05 05 07 03 02 30 76 06
+    08 2b 06 01 05 05 07 01 01 04 6a 30 68 30 24 06
+    08 2b 06 01 05 05 07 30 01 86 18 68 74 74 70 3a
+    2f 2f 6f 63 73 70 2e 64 69 67 69 63 65 72 74 2e
+    63 6f 6d 30 40 06 08 2b 06 01 05 05 07 30 02 86
+    34 68 74 74 70 3a 2f 2f 63 61 63 65 72 74 73 2e
+    64 69 67 69 63 65 72 74 2e 63 6f 6d 2f 44 69 67
+    69 43 65 72 74 47 6c 6f 62 61 6c 52 6f 6f 74 47
+    33 2e 63 72 74 30 42 06 03 55 1d 1f 04 3b 30 39
+    30 37 a0 35 a0 33 86 31 68 74 74 70 3a 2f 2f 63
+    72 6c 33 2e 64 69 67 69 63 65 72 74 2e 63 6f 6d
+    2f 44 69 67 69 43 65 72 74 47 6c 6f 62 61 6c 52
+    6f 6f 74 47 33 2e 63 72 6c 30 3d 06 03 55 1d 20
+    04 36 30 34 30 0b 06 09 60 86 48 01 86 fd 6c 02
+    01 30 07 06 05 67 81 0c 01 01 30 08 06 06 67 81
+    0c 01 02 01 30 08 06 06 67 81 0c 01 02 02 30 08
+    06 06 67 81 0c 01 02 03 30 0a 06 08 2a 86 48 ce
+    3d 04 03 03 03 68 00 30 65 02 30 7e 26 58 6e ee
+    88 ec 0c dd 15 41 ee 7a b8 99 99 70 d1 62 65 4f
+    a0 20 9e 47 b1 5b c1 b2 67 31 1d cc 72 7a af 22
+    72 40 42 6e 65 84 fe 87 4b 0f 19 02 31 00 e6 bf
+    d6 ae 34 87 5b 3f 67 c7 1d a8 6f d5 12 78 b5 e6
+    87 31 44 a9 5d c6 b8 78 cc cf ef d4 32 58 11 ff
+    3a 85 06 3c 1d 84 6f d3 f5 f9 da 33 1c a4 00 00
+depth=2 C = US, O = DigiCert Inc, OU = www.digicert.com, CN = DigiCert Global Root G3
+verify return:1
+depth=1 C = US, O = DigiCert Inc, CN = DigiCert Global G3 TLS ECC SHA384 2020 CA1
+verify return:1
+depth=0 C = US, ST = California, L = Los Angeles, O = Internet Corporation for Assigned Names and Numbers, CN = *.example.org
+verify return:1
+<<< TLS 1.2, RecordHeader [length 0005]
+    17 03 03 00 60
+<<< TLS 1.3, InnerContent [length 0001]
+    16
+<<< TLS 1.3, Handshake [length 004f], CertificateVerify
+    0f 00 00 4b 04 03 00 47 30 45 02 20 6f c3 e6 c4
+    42 18 f4 16 b3 71 13 39 0d 93 80 f3 bb 7c 60 7f
+    33 84 76 24 98 b2 6f b0 e7 d7 f6 76 02 21 00 94
+    cf 23 0c 62 31 56 ff 8a eb f3 40 b2 4a 72 db c8
+    44 1b d6 02 da fd fb 72 83 1a 0a 6b c6 7c 8d
+<<< TLS 1.2, RecordHeader [length 0005]
+    17 03 03 00 45
+<<< TLS 1.3, InnerContent [length 0001]
+    16
+<<< TLS 1.3, Handshake [length 0034], Finished
+    14 00 00 30 8f 9b f2 0f 0f cb 44 49 de a5 4d 30
+    aa df 28 45 bd b4 4a 65 fd 55 35 25 d6 8e 54 dd
+    78 3c 24 d1 5c b1 eb cc f2 d4 31 be 04 bb 64 7b
+    4f 03 0e 18
+>>> TLS 1.2, RecordHeader [length 0005]
+    14 03 03 00 01
+>>> TLS 1.3, ChangeCipherSpec [length 0001]
+    01
+>>> TLS 1.2, RecordHeader [length 0005]
+    17 03 03 00 45
+>>> TLS 1.2, InnerContent [length 0001]
+    16
+>>> TLS 1.3, Handshake [length 0034], Finished
+    14 00 00 30 b9 54 ea cd 6c ba 02 95 66 ec cf 2c
+    af bd 89 94 fc 94 23 1d f3 ff a7 a0 b9 f9 15 f5
+    8a 19 2f bc 04 2b b8 07 c0 60 81 31 50 d6 d9 e3
+    75 ea 04 ff
+---
+Certificate chain
+ 0 s:C = US, ST = California, L = Los Angeles, O = Internet Corporation for Assigned Names and Numbers, CN = *.example.org
+   i:C = US, O = DigiCert Inc, CN = DigiCert Global G3 TLS ECC SHA384 2020 CA1
+   a:PKEY: id-ecPublicKey, 256 (bit); sigalg: ecdsa-with-SHA384
+   v:NotBefore: Jan 15 00:00:00 2025 GMT; NotAfter: Jan 15 23:59:59 2026 GMT
+-----BEGIN CERTIFICATE-----
+MIIFnTCCBSSgAwIBAgIQByKnSbVYR2GW1VREXtvSVDAKBggqhkjOPQQDAzBZMQsw
+CQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMTMwMQYDVQQDEypEaWdp
+Q2VydCBHbG9iYWwgRzMgVExTIEVDQyBTSEEzODQgMjAyMCBDQTEwHhcNMjUwMTE1
+MDAwMDAwWhcNMjYwMTE1MjM1OTU5WjCBjjELMAkGA1UEBhMCVVMxEzARBgNVBAgT
+CkNhbGlmb3JuaWExFDASBgNVBAcTC0xvcyBBbmdlbGVzMTwwOgYDVQQKEzNJbnRl
+cm5ldCBDb3Jwb3JhdGlvbiBmb3IgQXNzaWduZWQgTmFtZXMgYW5kIE51bWJlcnMx
+FjAUBgNVBAMMDSouZXhhbXBsZS5vcmcwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNC
+AARvcLhq3uFMuzkqpTXG4X8Wcw413owfBJMz4JcqnNnlgNb2+2F0TaF4fVoDpf8+
+arlyqMYsxSxpUH/NbTudhW/Mo4IDljCCA5IwHwYDVR0jBBgwFoAUiiPrnmvX+Tdd
++W0hOXaaoWfeEKgwHQYDVR0OBBYEFBJFomWJllXyCp7B3wWf3VnuZbpRMCUGA1Ud
+EQQeMByCDSouZXhhbXBsZS5vcmeCC2V4YW1wbGUub3JnMD4GA1UdIAQ3MDUwMwYG
+Z4EMAQICMCkwJwYIKwYBBQUHAgEWG2h0dHA6Ly93d3cuZGlnaWNlcnQuY29tL0NQ
+UzAOBgNVHQ8BAf8EBAMCA4gwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMC
+MIGfBgNVHR8EgZcwgZQwSKBGoESGQmh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9E
+aWdpQ2VydEdsb2JhbEczVExTRUNDU0hBMzg0MjAyMENBMS0yLmNybDBIoEagRIZC
+aHR0cDovL2NybDQuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0R2xvYmFsRzNUTFNFQ0NT
+SEEzODQyMDIwQ0ExLTIuY3JsMIGHBggrBgEFBQcBAQR7MHkwJAYIKwYBBQUHMAGG
+GGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNvbTBRBggrBgEFBQcwAoZFaHR0cDovL2Nh
+Y2VydHMuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0R2xvYmFsRzNUTFNFQ0NTSEEzODQy
+MDIwQ0ExLTIuY3J0MAwGA1UdEwEB/wQCMAAwggF+BgorBgEEAdZ5AgQCBIIBbgSC
+AWoBaAB3AJaXZL9VWJet90OHaDcIQnfp8DrV9qTzNm5GpD8PyqnGAAABlGd6xV4A
+AAQDAEgwRgIhAO28p5oX3gxA0RJJ/2MaZ3zzMcyZggy2lwVQnqSpX5R3AiEAqUWx
++2l1xeojShV0ab+MbcPNg8bYvw1xb32sJOYuxKkAdQBkEcRspBLsp4kcogIuALyr
+TygH1B41J6vq/tUDyX3N8AAAAZRnesVjAAAEAwBGMEQCIAzHUguIG8H+0JF72uTL
+HatlorikPR/D3P/HRsyrF+44AiBGH0KcLNqcj2ZGEjChiiRfOjLdUrFKg6jnMIoV
+FMlYFwB2AEmcm2neHXzs/DbezYdkprhbrwqHgBnRVVL76esp3fjDAAABlGd6xXgA
+AAQDAEcwRQIgRESM73pynQ140QSowDrC49oQXZut2nYQc2DYrX26VXgCIQDRBYhi
+5U3bC19GT2EzfDLr38vkM5yNNYnYlY1En7+TczAKBggqhkjOPQQDAwNnADBkAjBH
+fYRsXBNHMfs6MlztuZRrCRw0ERMhMSHe7Al5nSDz+cP3KHcdxkRWtf1xFksSljUC
+ME1pXV7GC3Vq2Pmd0wPkRSngBR9Hm2X8srwINo/QvZ91oS7dUDseaBJ5wOb5oHmA
+jw==
+-----END CERTIFICATE-----
+ 1 s:C = US, O = DigiCert Inc, CN = DigiCert Global G3 TLS ECC SHA384 2020 CA1
+   i:C = US, O = DigiCert Inc, OU = www.digicert.com, CN = DigiCert Global Root G3
+   a:PKEY: id-ecPublicKey, 384 (bit); sigalg: ecdsa-with-SHA384
+   v:NotBefore: Apr 14 00:00:00 2021 GMT; NotAfter: Apr 13 23:59:59 2031 GMT
+-----BEGIN CERTIFICATE-----
+MIIDeTCCAv+gAwIBAgIQCwDpLU1tcx/KMFnHyx4YhjAKBggqhkjOPQQDAzBhMQsw
+CQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3d3cu
+ZGlnaWNlcnQuY29tMSAwHgYDVQQDExdEaWdpQ2VydCBHbG9iYWwgUm9vdCBHMzAe
+Fw0yMTA0MTQwMDAwMDBaFw0zMTA0MTMyMzU5NTlaMFkxCzAJBgNVBAYTAlVTMRUw
+EwYDVQQKEwxEaWdpQ2VydCBJbmMxMzAxBgNVBAMTKkRpZ2lDZXJ0IEdsb2JhbCBH
+MyBUTFMgRUNDIFNIQTM4NCAyMDIwIENBMTB2MBAGByqGSM49AgEGBSuBBAAiA2IA
+BHipnHWuiF1jpK1dhtgQSdavklljQyOF9EhlMM1KNJWmDj7ZfAjXVwUoSJ4Lq+vC
+05ae7UXSi4rOAUsXQ+Fzz21zSDTcAEYJtVZUyV96xxMH0GwYF2zK28cLJlYujQf1
+Z6OCAYIwggF+MBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFIoj655r1/k3
+XfltITl2mqFn3hCoMB8GA1UdIwQYMBaAFLPbSKT5ocXYrjZBzBFjaWIpvEvGMA4G
+A1UdDwEB/wQEAwIBhjAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwdgYI
+KwYBBQUHAQEEajBoMCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5kaWdpY2VydC5j
+b20wQAYIKwYBBQUHMAKGNGh0dHA6Ly9jYWNlcnRzLmRpZ2ljZXJ0LmNvbS9EaWdp
+Q2VydEdsb2JhbFJvb3RHMy5jcnQwQgYDVR0fBDswOTA3oDWgM4YxaHR0cDovL2Ny
+bDMuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0R2xvYmFsUm9vdEczLmNybDA9BgNVHSAE
+NjA0MAsGCWCGSAGG/WwCATAHBgVngQwBATAIBgZngQwBAgEwCAYGZ4EMAQICMAgG
+BmeBDAECAzAKBggqhkjOPQQDAwNoADBlAjB+Jlhu7ojsDN0VQe56uJmZcNFiZU+g
+IJ5HsVvBsmcxHcxyeq8ickBCbmWE/odLDxkCMQDmv9auNIdbP2fHHahv1RJ4teaH
+MUSpXca4eMzP79QyWBH/OoUGPB2Eb9P1+dozHKQ=
+-----END CERTIFICATE-----
+---
+Server certificate
+subject=C = US, ST = California, L = Los Angeles, O = Internet Corporation for Assigned Names and Numbers, CN = *.example.org
+issuer=C = US, O = DigiCert Inc, CN = DigiCert Global G3 TLS ECC SHA384 2020 CA1
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Peer signature type: ECDSA
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 2724 bytes and written 393 bytes
+Verification: OK
+---
+New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384
+Server public key is 256 bit
+Secure Renegotiation IS NOT supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+Early data was not sent
+Verify return code: 0 (ok)
+---
+DONE
+>>> TLS 1.2, RecordHeader [length 0005]
+    17 03 03 00 13
+>>> TLS 1.2, InnerContent [length 0001]
+    15
+>>> TLS 1.3, Alert [length 0002], warning close_notify
+    01 00

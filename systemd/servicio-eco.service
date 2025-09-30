@@ -1,15 +1,30 @@
 [Unit]
 Description=Servicio Eco DNS Analysis
-After=network.target
+After=network.target network-online.target
+Wants=network-online.target
+Requires=network.target
 
 [Service]
-Type=simple
-WorkingDirectory=/tmp
-Environment="DNS_SERVER=8.8.8.8" "DOMINIO=localhost"
-ExecStart=/bin/bash /path/to/src/dns-utils.sh
-Restart=no
+Type=exec
+WorkingDirectory=.
+EnvironmentFile=./systemd/servicio-eco.env
+ExecStart=/bin/bash ./src/dns-utils.sh --service
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=10
+KillMode=mixed
+User=%i
+Group=%i
 StandardOutput=journal
 StandardError=journal
+SyslogIdentifier=servicio-eco
+
+# Seguridad basica
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=./out
 
 [Install]
 WantedBy=multi-user.target
