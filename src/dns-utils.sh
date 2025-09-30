@@ -129,16 +129,25 @@ analizar_dns_avanzado() {
 # Funcion para modo servicio (systemd)
 ejecutar_como_servicio() {
     local dominio="${DOMINIO:-localhost}"
-    local log_file="./out/dns_service_$(date +%Y%m%d).log"
     
-    mkdir -p "$(dirname "$log_file")"
-    
-    echo "$(date '+%Y-%m-%d %H:%M:%S') - Iniciando servicio DNS" >> "$log_file"
+    # Cuando corre bajo systemd, los logs van automáticamente a journal
+    echo "Iniciando servicio DNS para dominio: $dominio"
     
     while true; do
-        local resultado
-        resultado=$(analizar_dns "$dominio")
-        echo "$(date '+%Y-%m-%d %H:%M:%S') - $resultado" >> "$log_file"
+        echo "--- Análisis DNS ---"
+        analizar_dns "$dominio"
+        echo "--- Fin análisis ---"
         sleep 60  # Ejecutar cada minuto
     done
 }
+
+# Punto de entrada cuando se ejecuta directamente
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    # Si se pasa --service, ejecutar como servicio
+    if [[ "${1:-}" == "--service" ]]; then
+        ejecutar_como_servicio
+    else
+        # Ejecución normal: análisis DNS simple
+        analizar_dns "${DOMINIO:-localhost}"
+    fi
+fi
