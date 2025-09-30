@@ -15,14 +15,18 @@ DOCS_DIR := docs
 OUT_DIR := out
 DIST_DIR := dist
 TEST_DIR := tests
+RELEASE_DIR := $(OUT_DIR)/release
 
 # Archivo de empaquetado
 DIST_FILE := $(DIST_DIR)/proyecto-$(RELEASE).tar.gz
 
+# Archivo para indicar que el release está actualizado
+RELEASE_STAMP := $(RELEASE_DIR)/.release_done
+
 # Lista de herramientas
 TOOLS = nc curl dig openssl bats
 
-.PHONY: tools build run test pack clean help tools-dns test-dns run-dns systemd-setup systemd-test test-http monitor-red test-negativos test-systemd systemd-install
+.PHONY: tools build run test pack clean help tools-dns test-dns run-dns systemd-setup systemd-test test-http monitor-red test-negativos test-systemd systemd-install release
 
 help:
 	@echo "Uso: make <target>"
@@ -53,9 +57,21 @@ tools:
 	done
 
 build:
+	@echo "Construyendo artefactos (evidencias)..."
 	@mkdir -p $(OUT_DIR)
 	@echo "Ejecutando analizador de conexión (HTTP/HTTPS)..."
 	@LOCAL_PORT=$(PORT) LOCAL_HOST=$(HOST) TARGET_PORT=$(TARGET_PORT) TARGET_HOST=$(TARGET_HOST) bash $(SRC_DIR)/handshake_analizer.sh
+
+release: $(RELEASE_STAMP)
+	@echo "Release actualizado en $(RELEASE_DIR)"
+
+$(RELEASE_STAMP): $(OUT_DIR)/http* $(OUT_DIR)/openssl* $(OUT_DIR)/ss*
+	@echo "Preparando release en $(RELEASE_DIR)..."
+	@rm -rf $(RELEASE_DIR)
+	@mkdir -p $(RELEASE_DIR)
+	@cp -r $(SRC_DIR) $(DOCS_DIR) Makefile $(RELEASE_DIR)/
+	@echo "Release preparado en $(RELEASE_DIR)/"
+	@touch $@
 
 test:
 	@echo "Ejecutando todas las pruebas bats (DNS, systemd, http)..."
@@ -66,14 +82,14 @@ test:
 run:
 	@PORT=$(PORT) HOST=$(HOST) bash $(SRC_DIR)/servicio_http_eco.sh
 
-$(DIST_FILE): $(SRC_DIR)/* $(DOCS_DIR)/* Makefile
+$(DIST_FILE): $(RELEASE_STAMP)
 	@echo "Empaquetando proyecto en $@..."
 	@mkdir -p $(DIST_DIR)
-	@tar -czf $@ $(SRC_DIR) $(DOCS_DIR) Makefile
+	@tar -czf $@ -C $(RELEASE_DIR) .
 
 # Empaquetar el proyecto
 pack: $(DIST_FILE)
-	@echo "Empaquetado listo: $(DIST_FILE)"
+	@echo "Empaquetado listo: $<"
 
 clean:
 	@echo "Limpiando $(OUT_DIR)/ y $(DIST_DIR)/..."
