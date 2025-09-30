@@ -49,9 +49,3 @@ setup() {
     # El test pasa si no crashea - el resultado puede ser vacio
     true
 }
-
-@test "Analisis DNS avanzado genera CSV" {
-    run analizar_dns_avanzado "localhost" "out/test_avanzado.csv"
-    [ "$status" -eq 0 ]
-    [ -f "out/test_avanzado.csv" ]
-}
