@@ -14,6 +14,7 @@ TARGET_PORT="${TARGET_PORT:-443}"
 echo -n "" > $OUT_DIR/ss_trace.txt
 
 (
+    set +e
     i=0
     while true; do
         i=$((i + 1))
