@@ -2,7 +2,10 @@
 PORT ?= 8080
 HOST ?= localhost
 RELEASE ?= v0.1.0
-DNS_SERVER ?= 
+DNS_SERVER ?=
+DOMINIO ?= localhost 
+MONITOR_HOSTS ?= localhost google.com
+MONITOR_PORTS ?= 80 443 8080 53
 
 # Directorios
 SRC_DIR := src
@@ -42,7 +45,9 @@ tools:
 	done
 
 build:
+
 test:
+
 run:
 	@PORT=$(PORT) HOST=$(HOST) bash $(SRC_DIR)/servicio_http_eco.sh
 
@@ -58,13 +63,7 @@ clean:
 	@echo "Limpiando $(OUT_DIR)/ y $(DIST_DIR)/..."
 	@rm -rf $(OUT_DIR) $(DIST_DIR)
 
-
-
 .PHONY: tools-dns test-dns run-dns systemd-setup systemd-test
-
-# Variables DNS
-DNS_SERVER ?= 
-DOMINIO ?= localhost
 
 # Verificar herramientas DNS
 tools-dns:
@@ -74,10 +73,11 @@ tools-dns:
 	done
 	@echo "Todas las herramientas DNS disponibles"
 
-# Ejecutar análisis DNS
+# Ejecutar analisis DNS
 run-dns:
-	@echo "Ejecutando análisis DNS..."
-	@DNS_SERVER=$(DNS_SERVER) DOMINIO=$(DOMINIO) bash src/dns-utils.sh
+	@mkdir -p $(OUT_DIR)
+	@echo "Ejecutando análisis DNS y guardando en $(OUT_DIR)..."
+	@DNS_SERVER=$(DNS_SERVER) DOMINIO=$(DOMINIO) bash src/dns-utils.sh | tee $(OUT_DIR)/dns-analysis-$$(date +%Y%m%d-%H%M%S).txt
 
 # Ejecutar pruebas DNS
 test-dns:
@@ -103,3 +103,32 @@ systemd-test:
 	@systemctl --user status servicio-eco || true
 	@systemctl --user stop servicio-eco
 	@echo "Prueba de unidad systemd completada"
+
+.PHONY: monitor-red test-negativos test-systemd systemd-install
+
+# Monitoreo de red
+monitor-red:
+	@echo "Ejecutando monitoreo de red..."
+	@HOSTS="$(MONITOR_HOSTS)" PORTS="$(MONITOR_PORTS)" bash src/monitor-red.sh
+
+test-systemd:
+	@echo "Validando configuracion systemd..."
+	@bats tests/systemd-validation.bats
+
+# Instalacion systemd avanzada
+systemd-install:
+	@echo "Instalando servicio systemd avanzado..."
+	@mkdir -p ~/.config/systemd/user/
+	@cp systemd/servicio-eco.service ~/.config/systemd/user/
+	@cp systemd/servicio-eco.env.template ~/.config/systemd/user/servicio-eco.env
+	@systemctl --user daemon-reload
+	@echo "Servicio instalado. Edita ~/.config/systemd/user/servicio-eco.env para configurar"
+
+# Target completo para todas las pruebas extendidas
+test-extendido: test-dns test-systemd
+	@echo "Todas las pruebas extendidas completadas"
+
+# Target para analisis avanzado
+run-dns-avanzado:
+	@mkdir -p $(OUT_DIR)
+	@DNS_SERVER=$(DNS_SERVER) DOMINIO=$(DOMINIO) bash src/dns-utils.sh --avanzado
