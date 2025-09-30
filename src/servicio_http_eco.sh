@@ -67,13 +67,17 @@ while true; do
         "POST")
             case "$path" in
             "/eco")
-                if [ -n "$content_length" ] && [ "$content_length" -gt 0 ]; then
-                    status="200 OK" 
-                    # Leer el body del request hasta cierto numero de bytes
-                    body="$(head -c "$content_length")"
+                if [ -n "$content_length" ]; then
+                    if [ "$content_length" -gt 0 ]; then
+                        status="200 OK" 
+                        body="$(head -c "$content_length")"
+                    else
+                        status="200 OK"
+                        body=""
+                    fi
                 else 
                     status="400 Bad Request"
-                    body="Error 400: POST /eco requires a request body"
+                    body="Error 400: POST /eco requires a Content-Length header"
                 fi
                 ;;
             *)
@@ -88,7 +92,7 @@ while true; do
             ;;
         *)
             status="405 Method Not Allowed"
-            body="Error 405: Method Not Allowed - Supported: GET, HEAD"
+            body="Error 405: Method Not Allowed - Supported: GET, HEAD, POST"
             ;;
         esac
 
