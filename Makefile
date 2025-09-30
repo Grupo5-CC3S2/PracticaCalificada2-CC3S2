@@ -3,6 +3,9 @@ PORT ?= 8080
 HOST ?= localhost
 RELEASE ?= v0.1.0
 DNS_SERVER ?= 
+DOMINIO ?= localhost
+TARGET_HOST ?= example.org
+TARGET_PORT ?= 443
 
 # Directorios
 SRC_DIR := src
@@ -17,18 +20,24 @@ DIST_FILE := $(DIST_DIR)/proyecto-$(RELEASE).tar.gz
 # Lista de herramientas
 TOOLS = nc curl dig openssl bats
 
-.PHONY: tools build run test pack clean help
+.PHONY: tools build run test pack clean help tools-dns test-dns run-dns systemd-setup systemd-test test-http
 
 help:
 	@echo "Uso: make <target>"
 	@echo ""
-	@echo "Targets disponibles:"
-	@echo "  tools   - Verificar herramientas necesarias ($(TOOLS))"
-	@echo "  build   - Generar artefactos intermedios en $(OUT_DIR)/"
-	@echo "  run     - Iniciar el servicio eco"
-	@echo "  test    - Ejecutar prueba básica con curl"
-	@echo "  pack    - Empaquetar release en $(DIST_DIR)"
-	@echo "  clean   - Limpiar artefactos"
+	@echo "Targets generales:"
+	@echo " tools   - Verificar herramientas necesarias ($(TOOLS))"
+	@echo " build   - Generar artefactos en $(OUT_DIR)/"
+	@echo " run     - Iniciar el servicio eco HTTP"
+	@echo " test    - Ejecutar pruebas bats de systemd, DNS y del servicio HTTP"
+	@echo " pack    - Empaquetar release en $(DIST_DIR)"
+	@echo " clean   - Limpiar artefactos"
+	@echo "Targets específicos:"
+	@echo " run-dns 	  - Ejecución de análisis de DNS"
+	@echo " systemd-setup 	  - Configuración de unidad systemd"
+	@echo " test-dns 	  - Pruebas bats para DNS"
+	@echo " systemd-test  	  - Pruebas bats para la unidad systemd"
+	@echo " test-http 	  - Pruebas bats para el servicio HTTP"
 
 tools:
 	@echo "Verificando que herramientas necesarias estén instaladas..."
@@ -42,7 +51,16 @@ tools:
 	done
 
 build:
+	@mkdir -p $(OUT_DIR)
+	@echo "Ejecutando analizador de conexión (HTTP/HTTPS)..."
+	@LOCAL_PORT=$(PORT) LOCAL_HOST=$(HOST) TARGET_PORT=$(TARGET_PORT) TARGET_HOST=$(TARGET_HOST) bash $(SRC_DIR)/handshake_analizer.sh
+
 test:
+	@echo "Ejecutando todas las pruebas bats (DNS, systemd, http)..."
+	$(MAKE) test-dns
+	$(MAKE) test-http
+	$(MAKE) systemd-test
+
 run:
 	@PORT=$(PORT) HOST=$(HOST) bash $(SRC_DIR)/servicio_http_eco.sh
 
@@ -51,28 +69,13 @@ $(DIST_FILE): $(SRC_DIR)/* $(DOCS_DIR)/* Makefile
 	@mkdir -p $(DIST_DIR)
 	@tar -czf $@ $(SRC_DIR) $(DOCS_DIR) Makefile
 
+# Empaquetar el proyecto
 pack: $(DIST_FILE)
 	@echo "Empaquetado listo: $(DIST_FILE)"
 
 clean:
 	@echo "Limpiando $(OUT_DIR)/ y $(DIST_DIR)/..."
 	@rm -rf $(OUT_DIR) $(DIST_DIR)
-
-
-
-.PHONY: tools-dns test-dns run-dns systemd-setup systemd-test
-
-# Variables DNS
-DNS_SERVER ?= 
-DOMINIO ?= localhost
-
-# Verificar herramientas DNS
-tools-dns:
-	@echo "Verificando herramientas DNS..."
-	@for tool in dig; do \
-		command -v $$tool >/dev/null 2>&1 || { echo "Falta $$tool"; exit 1; } \
-	done
-	@echo "Todas las herramientas DNS disponibles"
 
 # Ejecutar análisis DNS
 run-dns:
@@ -103,3 +106,8 @@ systemd-test:
 	@systemctl --user status servicio-eco || true
 	@systemctl --user stop servicio-eco
 	@echo "Prueba de unidad systemd completada"
+
+# Probar servicio eco HTTP
+test-http:
+	@echo "Probando servicio eco HTTP..."
+	@PORT=$(PORT) HOST=$(HOST) bats $(TEST_DIR)/test-http-service.bats
