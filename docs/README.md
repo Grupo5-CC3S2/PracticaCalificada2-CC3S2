@@ -4,7 +4,6 @@
 
 - Daren Herrera Romo (scptx0)
 - Jhon Cruz Tairo (JECT-02)
-- Anthony Carlos Ramón (AnthonyCar243)
 
 ## Descripción del Proyecto
 
