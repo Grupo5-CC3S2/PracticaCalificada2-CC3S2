@@ -1,4 +1,4 @@
-# Proyecto de Servidor HTTP Básico y Herramientas de Red en Bash
+# Mini-plataforma de "eco HTTP" con trazas DNS/TLS
 
 ## Integrantes:
 
