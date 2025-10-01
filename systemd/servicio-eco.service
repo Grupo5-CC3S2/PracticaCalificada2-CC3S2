@@ -1,0 +1,18 @@
+[Unit]
+Description=Servicio Eco DNS Analysis
+After=network.target network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/ject/Escritorio/PCsDS/PracticaCalificada2-CC3S2
+EnvironmentFile=/home/ject/Escritorio/PCsDS/PracticaCalificada2-CC3S2/systemd/servicio-eco.env
+ExecStart=/bin/bash /home/ject/Escritorio/PCsDS/PracticaCalificada2-CC3S2/src/dns-utils.sh --service
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=servicio-eco
+
+[Install]
+WantedBy=default.target
